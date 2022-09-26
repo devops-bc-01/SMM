@@ -17,7 +17,12 @@ Vagrant.configure("2") do |config|
       vb.cpus = "1"
     end
     ciConfig.vm.network "forwarded_port", guest: 8080, host: 8080
-    ciConfig.vm.provision "shell", path: "runnerScript.sh"
+    ciConfig.vm.provision "shell", path: "runnerScript.sh", env: {
+      "GITURL" => GITURL,
+      "HASH" => HASH,
+      "ORGURL" => ORGURL,
+      "TOKEN" => TOKEN
+    }
     # ciConfig.vm.provision "shell", inline: <<-SHELL
     #   apt-get update
       # mkdir -p actions-runner && cd actions-runner

@@ -1,10 +1,6 @@
 #!/bin/sh
 DIR=actions-runner
 FILE=actions-runner/svc.sh
-GITURL='https://github.com/actions/runner/releases/download/v2.296.2/actions-runner-linux-x64-2.296.2.tar.gz'
-HASH='34a8f34956cdacd2156d4c658cce8dd54c5aef316a16bbbc95eb3ca4fd76429a'
-ORGURL='https://github.com/devops-bc-01'
-TOKEN='AQWL6OVDUXVKA33CB26L77TDFTDR4'
 
 if [ -d "$DIR" ] && [ -f "$FILE" ];then
     echo "${DIR} and ${FILE} already exists! starting runner..."
