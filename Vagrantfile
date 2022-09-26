@@ -17,14 +17,15 @@ Vagrant.configure("2") do |config|
       vb.cpus = "1"
     end
     ciConfig.vm.network "forwarded_port", guest: 8080, host: 8080
-    ciConfig.vm.provision "shell", inline: <<-SHELL
-      apt-get update
-      mkdir actions-runner && cd actions-runner
-      curl -o actions-runner-linux-x64-2.296.2.tar.gz -L $GITURL
-      echo "$HASH  actions-runner-linux-x64-2.296.2.tar.gz" | shasum -a 256 -c
-      tar xzf ./actions-runner-linux-x64-2.296.2.tar.gz
-      ./config.sh --url $ORGURL --token $TOKEN
-      ./run.sh
-    SHELL
+    ciConfig.vm.provision "shell", path: "runnerScript.sh"
+    # ciConfig.vm.provision "shell", inline: <<-SHELL
+    #   apt-get update
+      # mkdir -p actions-runner && cd actions-runner
+      # curl -o actions-runner-linux-x64-2.296.2.tar.gz -L $GITURL
+      # echo "$HASH  actions-runner-linux-x64-2.296.2.tar.gz" | shasum -a 256 -c
+      # tar xzf ./actions-runner-linux-x64-2.296.2.tar.gz
+      # ./config.sh --url $ORGURL --token $TOKEN
+      # ./run.sh
+    # SHELL
   end
 end
