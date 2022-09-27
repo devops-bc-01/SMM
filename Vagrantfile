@@ -16,6 +16,27 @@ Vagrant.configure("2") do |config|
     ciConfig.vm.network "forwarded_port", guest: 8080, host: 8080
     ciConfig.vm.provision "shell", path: "runnerScript.sh", env: {
       "GITURL" => GITURL,
+      "RUNNER_NAME" => "SergioMM"
     }
   end
 end
+# NODE_COUNT = 2
+# Vagrant.configure("2") do |config|
+#   (1..NODE_COUNT).each do |i|
+#     config.vm.define "devops-#{i}" do |ciConfig|
+#       ciConfig.vm.box = BOX_IMAGE
+#       ciConfig.vm.hostname = 'dev-test'
+#       ciConfig.vm.provider :virtualbox do |vb|
+#         ciConfig.vm.network :private_network, ip: "10.20.1.1#{i}"
+#         vb.gui = false
+#         vb.memory = "1024"
+#         vb.cpus = "1"
+#       end
+#       ciConfig.vm.network "forwarded_port", guest: 8080, host: 8080
+#       ciConfig.vm.provision "shell", path: "runnerScript.sh", env: {
+#         "GITURL" => GITURL,
+#         "RUNNER_NAME" => "smm-runner-#{i}"
+#       }
+#     end
+#   end
+# end

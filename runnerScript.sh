@@ -12,10 +12,12 @@ else
     export RUNNER_ALLOW_RUNASROOT="1" 
     echo "Files required were not found installing runner..."
     mkdir -p actions-runner && cd actions-runner
-    curl -o actions-runner-linux-x64-2.296.2.tar.gz -L $GITURL
+    if [ ! -f "$FILE" ]; then
+          curl -o actions-runner-linux-x64-2.296.2.tar.gz -L $GITURL
+    fi
     echo "$HASH  actions-runner-linux-x64-2.296.2.tar.gz" | shasum -a 256 -c
     tar xzf ./actions-runner-linux-x64-2.296.2.tar.gz
-    ./config.sh --url $ORGURL --token $TOKEN --runnergroup "default" --name "SergioMM"  --work "_work" --labels "SMMRunner"
+    ./config.sh --url $ORGURL --token $TOKEN --runnergroup "default" --name $RUNNER_NAME  --work "_work" --labels "SMMRunner"
     sudo ./svc.sh install
     sudo ./svc.sh start
 fi
