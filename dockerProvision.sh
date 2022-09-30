@@ -2,7 +2,8 @@
 CONTAINER_NAME1=my-nginx
 CONTAINER_NAME2=my-apache
 #CREATE DIRECTORIES
-
+mkdir -p apache-bind/html
+mkdir -p apache-nginx/html
 
 cp /vagrant/html/apache/index.html /home/vagrant/apache-bind/html
 cp /vagrant/html/nginx/index.html /home/vagrant/nginx-bind/html
